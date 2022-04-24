@@ -5,8 +5,7 @@ const fetch = require("node-fetch");
 const EpnsSDK = require("@epnsproject/backend-sdk-staging").default;
 const utils = require('ethers').utils;
 
-const CHANNEL_PK = "0xd1d8292c9bf014476c3c58cc45df582cf4a8fb10ed706bf7761db56b1d3f4dd7";
-// const CHANNEL_PK = process.env.PK; // the channel key 
+const CHANNEL_PK = process.env.PK; // the channel key 
 const CTA = "https://github.com/ethereum-push-notification-service"; // the link to be used as your cta
 
 
