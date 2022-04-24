@@ -6,11 +6,11 @@ const EpnsSDK = require("@epnsproject/backend-sdk-staging").default;
 const utils = require('ethers').utils;
 
 const CHANNEL_PK = "0xd1d8292c9bf014476c3c58cc45df582cf4a8fb10ed706bf7761db56b1d3f4dd7";
-// const CHANNEL_PK = process.env.PK; // the private key of the channel
+// const CHANNEL_PK = process.env.PK; // the channel key 
 const CTA = "https://github.com/ethereum-push-notification-service"; // the link to be used as your cta
 
 
-schedule.scheduleJob('*/10 * * * * *', async function () {
+schedule.scheduleJob('*/5 * * * * *', async function () {
 
   let dai = await getDripsBySender("0xb5bb9a125c2f67f1f2cd9d8992955bb209490afe");
   let currentAccountValue = 0.000000192907772125
@@ -26,10 +26,10 @@ schedule.scheduleJob('*/10 * * * * *', async function () {
 async function EPNS(dai){
         
     const epnsSdk = new EpnsSDK(CHANNEL_PK);
-    const pushNotificationTitle = "Welcome"; //the title which would appear in a push notification, usually could be a shorter version of the actual message
-    const pushNotificationBody = "Your balance in DAI is: "; //the body which would be displayed in a push notification, usually could be a shorter version of the actual message
+    const pushNotificationTitle = "Dripped!"; //the title which would appear in a push notification, usually could be a shorter version of the actual message
+    const pushNotificationBody = "You received funding!! New DAI balance is: " + dai; //the body which would be displayed in a push notification, usually could be a shorter version of the actual message
   
-    const notificationTitle = "Your balance in DAI is: " + dai; //the long version of the title which would be displayed in the dApp
+    const notificationTitle = "You received funding!! New DAI balance is: " + dai; //the long version of the title which would be displayed in the dApp
     const notificationBody = "Welcome to EPNS, we are glad to have you on board"; // the long version of the body which would be displayed in the dApp
     // TODO: change notification title and body to suite needs
   
@@ -67,8 +67,9 @@ async function getDripsBySender(address) {
   //   console.log(apiUrl)
     const wei = resp.data?.dripsConfigs[0].balance;
      const dai = utils.formatEther(wei);
-     console.log("dai balance is : " + dai);
-     console.log("Your Balance in DAI is: " + resp.data.dripsConfigs[0].balance);
+     console.log("Dai balance is : " + dai);
+    //  console.log("Your Balance in DAI is: " + resp.data.dripsConfigs[0].balance);
+
 //     console.log('query response ' + JSON.stringify(resp))
 //    const config = resp.data?.dripsConfigs[0].balance;
      // if (config) {
