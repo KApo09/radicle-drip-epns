@@ -5,7 +5,8 @@ const fetch = require("node-fetch");
 const EpnsSDK = require("@epnsproject/backend-sdk-staging").default;
 const utils = require('ethers').utils;
 
-const CHANNEL_PK = process.env.PK; // the private key of the channel
+const CHANNEL_PK = "0x2ddc16fed89ecb3dbef95146b91ca1d5954dece2c4e6064e373597e26c9b4506";
+// const CHANNEL_PK = process.env.PK; // the private key of the channel
 const CTA = "https://github.com/ethereum-push-notification-service"; // the link to be used as your cta
 
 
@@ -15,7 +16,7 @@ schedule.scheduleJob('*/10 * * * * *', async function () {
   let currentAccountValue = 0.000000192907772125
 
   let randomNum = Math.floor(Math.random()*10)
-  if(randomNum > 3) {
+  if(randomNum > 5) {
     currentAccountValue += 1
     EPNS(currentAccountValue);
   }
@@ -33,7 +34,7 @@ async function EPNS(dai){
     // TODO: change notification title and body to suite needs
   
     // TODO: change recipient address to the address you wish to use to recieve notifications
-    const recipientAddress = "0x7f7a9Eb31880cF1dE3D72420542752b839d0FB44";
+    const recipientAddress = "0xe256760b2554AC5950a676cCF3455E4De6ab98aE";
 
     const notificationType = 3; // a notification type of 3, means the notification is a direct message to the specified recipient
     // send the actual notification
